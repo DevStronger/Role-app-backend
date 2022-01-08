@@ -1,13 +1,14 @@
 package com.learning.roles.dto;
 
 
-import com.learning.roles.constant.enums.Role;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Builder
@@ -31,6 +32,7 @@ public class UserDto {
     @NotBlank
     private String role;
     private boolean isActive;
+    @JsonProperty
     private boolean isNotLocked;
 
 }
