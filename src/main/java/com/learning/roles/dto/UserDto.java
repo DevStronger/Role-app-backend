@@ -32,7 +32,6 @@ public class UserDto {
     @NotBlank
     private String role;
     private boolean isActive;
-    @JsonProperty
     private boolean isNotLocked;
 
 }

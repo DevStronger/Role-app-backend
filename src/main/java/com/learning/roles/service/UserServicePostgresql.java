@@ -67,6 +67,7 @@ public class UserServicePostgresql implements UserService, UserDetailsService {
         User user = userOptional.get();
 //        validateLoginAttempt(user);
         user.setLastLoginDate(Instant.now());
+
         this.userRepository.save(user);
         LOGGER.info(Instant.now().toString(), "Returning found user by email: " + email);
         return new UserPrincipal(user);
@@ -115,6 +116,8 @@ public class UserServicePostgresql implements UserService, UserDetailsService {
         this.validateEmailAndUsername(userDto);
         String encodedPass = encodePassword(userDto.getPassword());
         User u =  this.mapUserData(userDto);
+        u.setNotLocked(true);
+        u.setActive(true);
         u.setPassword(encodedPass);
         u = this.userRepository.save(u).get();
         LOGGER.info(Instant.now().toString(), " User has been registered");
